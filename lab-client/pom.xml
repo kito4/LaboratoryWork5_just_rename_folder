@@ -29,7 +29,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>${project.groupId}.client.Client</mainClass>
+							<mainClass>kito.lab5.client.Client</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
