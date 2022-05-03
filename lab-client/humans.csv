@@ -1,3 +1,2 @@
-name,x,y,creationDate,realHero,hasToothpick,impactSpeed,weaponType,carCoolness
-ivan,12,-2.13120307E9,2022-02-21,true,false,    123,    MACHINE_GUN,false
-
+name,X,Y,creationDate,hasToothpick,impactSpeed,soundtrackName,MinutesOfWaiting,weaponType,cool,carname,RealHero
+ivan,12,-2.13120307E9,2011-12-03T10:15:30+01:00,true,14.1,amogus,3.1,SHOTGUN,false,def_name_of_car,true

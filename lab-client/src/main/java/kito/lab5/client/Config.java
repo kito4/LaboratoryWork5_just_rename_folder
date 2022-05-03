@@ -19,6 +19,6 @@ public class Config {
     }
 
     public static String getFilePath() {
-        return System.getenv(getSystemEnvironment());
+        return System.getenv(sysEnvironment);
     }
 }

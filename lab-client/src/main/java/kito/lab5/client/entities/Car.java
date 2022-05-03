@@ -7,15 +7,15 @@ import javax.validation.constraints.NotNull;
  */
 public class Car {
     @NotNull
-    private String name;
+    private String carname;
     private boolean cool; //Поле может быть null
 
-    public String getName() {
-        return name;
+    public String getCarname() {
+        return carname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCarname(String carname) {
+        this.carname = carname;
     }
 
     public boolean isCool() {

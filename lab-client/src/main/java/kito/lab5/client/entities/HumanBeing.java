@@ -10,6 +10,7 @@ import java.time.ZonedDateTime;
 /**
  *  Класс человек, коллекцией экземпляров которого управляет коллекция и пользователь в интерактивном режиме
  */
+
 public class HumanBeing implements Comparable<HumanBeing> {
 
     private static Integer idCounter = 1;
@@ -23,11 +24,11 @@ public class HumanBeing implements Comparable<HumanBeing> {
     private Coordinates coordinates = new Coordinates();
     private @NotNull ZonedDateTime creationDate;
     @NotNull
-    private Boolean realHero;
+    private Boolean RealHero;
     private boolean hasToothpick;
     private @Max(324) Double impactSpeed;
     private @NotNull String soundtrackName;
-    private @NotNull Float minutesOfWaiting;
+    private @NotNull Float MinutesOfWaiting;
     private @NotNull WeaponType weaponType;
     private @NotNull Car car = new Car();
 
@@ -40,6 +41,10 @@ public class HumanBeing implements Comparable<HumanBeing> {
             setId();
         }
         creationDate = ZonedDateTime.now();
+    }
+
+    public void setRealHero(Boolean realHero) {
+        this.RealHero = realHero;
     }
 
     /**
@@ -105,17 +110,13 @@ public class HumanBeing implements Comparable<HumanBeing> {
     /**
      * @return героизм человека
      */
-    public Boolean isRealHero() {
-        return realHero;
-    }
+
 
     /**
      * Метод, позволяющий задать героизм человека
      * @param realHero героизм человека в строковом формате
      */
-    public void setRealHero(Boolean realHero) {
-        this.realHero = realHero;
-    }
+
 
     /**
      * @return наличие зубочистки у человека
@@ -172,13 +173,16 @@ public class HumanBeing implements Comparable<HumanBeing> {
     public static void setIdCounter(Integer idCounter) {
         HumanBeing.idCounter = idCounter;
     }
+    public Boolean isRealHero() {
+        return RealHero;
+    }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
     public Boolean getRealHero() {
-        return realHero;
+        return RealHero;
     }
 
     public String getSoundtrackName() {
@@ -190,11 +194,11 @@ public class HumanBeing implements Comparable<HumanBeing> {
     }
 
     public Float getMinutesOfWaiting() {
-        return minutesOfWaiting;
+        return MinutesOfWaiting;
     }
 
     public void setMinutesOfWaiting(Float minutesOfWaiting) {
-        this.minutesOfWaiting = minutesOfWaiting;
+        this.MinutesOfWaiting = minutesOfWaiting;
     }
 
 
@@ -229,8 +233,8 @@ public class HumanBeing implements Comparable<HumanBeing> {
     public String toString() {
         return id + ". " + name + ", X: "
                 + coordinates.getX() + ", Y: " + coordinates.getY()
-                + ", CREATION DATE: " + creationDate + ", REAL HERO: " + realHero
+                + ", CREATION DATE: " + creationDate + ", REAL HERO: " + RealHero
                 + ", HAS TOOTHPICK: " + hasToothpick + ", IMPACT SPEED: " + impactSpeed
-                + ", WEAPON TYPE: " + weaponType + ", MOOD: "  + ", CAR INFO: " + (car == null ? "no car" : car.toString());
+                + ", WEAPON TYPE: " + weaponType +    ", CAR INFO: " + (car == null ? "no car" : car.toString());
     }
 }

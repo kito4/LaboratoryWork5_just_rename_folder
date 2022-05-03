@@ -7,6 +7,7 @@ public final class Client {
 
     public static void main(String[] args) {
         Application application = new Application();
+        System.out.println(System.getenv("HUMAN_INFO"));
         application.launchApplication();
     }
 }

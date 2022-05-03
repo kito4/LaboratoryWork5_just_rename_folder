@@ -9,14 +9,14 @@ import javax.validation.constraints.NotNull;
 public class Coordinates {
 
     @Max(61)
-    private float x; //Значение поля должно быть больше -759
-    private @NotNull Float y;
+    private float X;
+    private @NotNull Float Y;
 
     /**
      * @return координата по X
      */
     public float getX() {
-        return this.x;
+        return this.X;
     }
 
     /**
@@ -24,14 +24,14 @@ public class Coordinates {
      * @param x значение координаты по X в строковом формате
      */
     public void setX(float x) {
-        this.x = x;
+        this.X = x;
     }
 
     /**
      * @return координата по Y
      */
     public @NotNull Float getY() {
-        return this.y;
+        return this.Y;
     }
 
     /**
@@ -39,6 +39,6 @@ public class Coordinates {
      * @param y значение координаты по X
      */
     public void setY(Float y) {
-        this.y = y;
+        this.Y = y;
     }
 }

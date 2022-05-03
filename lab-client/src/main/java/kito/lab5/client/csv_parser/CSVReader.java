@@ -66,7 +66,7 @@ public class CSVReader extends AbstractFileReader {
      */
     @Override
     public void initializeFile(String fileName) throws FileNotFoundException {
-        File infoFile = new File("/Users/kito/Desktop/prog-labs-master/LaboratoryWork5/lab-client/humans.csv");
+        File infoFile = new File(fileName);
         scannerOfFile = new Scanner(infoFile);
     }
 

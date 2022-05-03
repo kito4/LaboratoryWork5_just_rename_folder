@@ -1,10 +1,7 @@
 package kito.lab5.client.entities;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -12,7 +9,7 @@ import java.util.stream.Collectors;
  */
 public class CollectionManager {
 
-    private final PriorityQueue<HumanBeing> humanQueue = new PriorityQueue<>(); //PriorityQueue to linkedlist
+    private final PriorityQueue<HumanBeing> humanQueue = new PriorityQueue<>(); // change PriorityQueue to linkedlist
     private final LocalDate initializationDate;
 
     /**
@@ -185,7 +182,7 @@ public class CollectionManager {
         for (HumanBeing human : humanQueue) {
             String humanInfo = human.getName() + "," + human.getCoordinates().getX() + ","
                     + human.getCoordinates().getY() + "," + human.getCreationDate().toString() + ","
-                    + human.isRealHero() + "," + human.isHasToothpick() + ","
+                     + "," + human.isHasToothpick() + ","
                     + (human.getImpactSpeed() == null ? "null," : human.getImpactSpeed() + ",")
                     + (human.getWeaponType() == null ? "null," : human.getWeaponType() + ",")
                       + (human.getCar() == null ? "," : (human.getCar().getCool()   + ","));
