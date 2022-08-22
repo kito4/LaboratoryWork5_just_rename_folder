@@ -55,11 +55,11 @@ public class HumanInfoInput {
     }
 
     private void inputX() throws NumberFormatException {
-        TextSender.printText("Введите X(целое число): ");
+        TextSender.printText("Введите X(дробное число): ");
         String userInput = scanner.nextLine();
         try {
-            newHumanToInput.getCoordinates().setX((Long) StringToTypeConverter.toObject(Long.class, userInput));
-            boolean validationResult = HumanValidator.validateField(newHumanToInput.getCoordinates(), "x");
+            newHumanToInput.getCoordinates().setX((float) StringToTypeConverter.toObject(float.class, userInput));
+            boolean validationResult = HumanValidator.validateField(newHumanToInput.getCoordinates(), "X");
             if (!validationResult) {
                 inputX();
             }
@@ -70,14 +70,10 @@ public class HumanInfoInput {
     }
 
     private void inputY() throws NumberFormatException {
-        TextSender.printText("Введите Y(число с плавающей точкой): ");
+        TextSender.printText("Введите Y(целое): ");
         String userInput = scanner.nextLine();
         try {
-            Float y = (Float) StringToTypeConverter.toObject(Float.class, userInput);
-            if (y.equals(Float.NEGATIVE_INFINITY) || y.equals(Float.POSITIVE_INFINITY)) {
-                TextSender.printError("Введено слишком большое число для этого формата");
-                inputY();
-            }
+            @javax.validation.constraints.NotNull Integer y = (Integer) StringToTypeConverter.toObject(Integer.class, userInput);
             newHumanToInput.getCoordinates().setY(y);
             boolean validationResult = HumanValidator.validateField(newHumanToInput.getCoordinates(), "y");
             if (!validationResult) {
@@ -115,7 +111,7 @@ public class HumanInfoInput {
         if ("".equals(this.impactSpeed)) {
             newHumanToInput.setImpactSpeed(null);
         } else {
-            newHumanToInput.setImpactSpeed((Double) StringToTypeConverter.toObject(Integer.class, this.impactSpeed));
+            newHumanToInput.setImpactSpeed((Double) StringToTypeConverter.toObject(Double.class, this.impactSpeed));
             boolean validationResult = HumanValidator.validateField(newHumanToInput, "impactSpeed");
             if (!validationResult) {
                 throw new IllegalArgumentException("Ошибка ввода скорости удара человека");

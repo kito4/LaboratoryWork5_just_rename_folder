@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  */
 public class CollectionManager {
 
-    private final PriorityQueue<HumanBeing> humanQueue = new PriorityQueue<>(); // change PriorityQueue to linkedlist
+    private final PriorityQueue<HumanBeing> humanQueue = new PriorityQueue<>();
     private final LocalDate initializationDate;
 
     /**

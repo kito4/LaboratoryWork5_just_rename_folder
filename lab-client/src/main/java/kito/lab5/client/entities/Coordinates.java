@@ -9,8 +9,9 @@ import javax.validation.constraints.NotNull;
 public class Coordinates {
 
     @Max(61)
+    @NotNull
     private float X;
-    private @NotNull Float Y;
+    private @NotNull Integer Y;
 
     /**
      * @return координата по X
@@ -30,7 +31,7 @@ public class Coordinates {
     /**
      * @return координата по Y
      */
-    public @NotNull Float getY() {
+    public @NotNull Integer getY() {
         return this.Y;
     }
 
@@ -38,7 +39,7 @@ public class Coordinates {
      * Метод, позволяющий задать координату по Y
      * @param y значение координаты по X
      */
-    public void setY(Float y) {
+    public void setY(@NotNull Integer y) {
         this.Y = y;
     }
 }
