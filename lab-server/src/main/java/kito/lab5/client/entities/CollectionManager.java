@@ -181,11 +181,15 @@ public class CollectionManager {
         ArrayList<String> arrayOfInfo = new ArrayList<>();
         for (HumanBeing human : humanQueue) {
             String humanInfo = human.getName() + "," + human.getCoordinates().getX() + ","
-                    + human.getCoordinates().getY() + "," + human.getCreationDate().toString() + ","
+                    + human.getCoordinates().getY() + "," + human.getCreationDate().toString()
                      + "," + human.isHasToothpick() + ","
                     + (human.getImpactSpeed() == null ? "null," : human.getImpactSpeed() + ",")
+                    + (human.getSoundtrackName() == null ? "null," : human.getSoundtrackName() + ",")
+                    + (human.getMinutesOfWaiting() == null ? "null," : human.getMinutesOfWaiting() + ",")
                     + (human.getWeaponType() == null ? "null," : human.getWeaponType() + ",")
-                      + (human.getCar() == null ? "," : (human.getCar().getCool()   + ","));
+                    + (human.getCar().getCool() +",")
+                      + (human.getCar().getCarname() == null ? "," : (human.getCar().getCarname()   + ",")
+                    + (human.getRealHero() == null ? "null," : human.getRealHero()));
             arrayOfInfo.add(humanInfo);
         }
         return arrayOfInfo;
