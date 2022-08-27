@@ -9,7 +9,7 @@ import kito.lab5.client.user_command_line.SuccessMessage;
 public class Add extends AbstractCommand {
 
     public Add() {
-        super("add", "Добавить элемент в коллекцию, принимает на вход [Имя, наличие героизма(true/false), наличие зубочистки(true/false), скорость удара]", 4);
+        super("add", "Добавить элемент в коллекцию, принимает на вход [Имя, наличие героизма(true/false), наличие зубочистки(true/false), скорость удара,ожидание]", 5);
     }
 
     @Override

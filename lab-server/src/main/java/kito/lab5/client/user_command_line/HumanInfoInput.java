@@ -21,6 +21,10 @@ public class HumanInfoInput {
     private final String hasToothpick;
     private final String impactSpeed;
 
+    private String soundtrackname;
+
+    private final String MinutesOfWaiting;
+
     /**
      * Конструктор создающий человека информацию о котором мы хотим получить автоматически
      */
@@ -29,6 +33,7 @@ public class HumanInfoInput {
         this.realHero = args[1];
         this.hasToothpick = args[2];
         this.impactSpeed = args[3];
+        this.MinutesOfWaiting = args[4];
         newHumanToInput = new HumanBeing(false);
         setPrimitives();
     }
@@ -42,6 +47,8 @@ public class HumanInfoInput {
         this.realHero = args[1];
         this.hasToothpick = args[2];
         this.impactSpeed = args[3];
+
+        this.MinutesOfWaiting = args[5];
         this.newHumanToInput = newHumanToInput;
         setPrimitives();
     }
@@ -159,12 +166,43 @@ public class HumanInfoInput {
         String userAnswer = scanner.nextLine();
         if ("y".equals(userAnswer)) {
             inputCarCoolness();
+            inputCarName();
 
         } else if ("n".equals(userAnswer)) {
             newHumanToInput.setCar(null);
         } else {
             TextSender.printError("Ошибка ввода");
             inputCar();
+        }
+    }
+
+    private void inputCarName() {
+        TextSender.printText("Введите название машины");
+        String userAnswer = scanner.nextLine();
+        newHumanToInput.getCar().setCarname(userAnswer);
+
+    }
+
+    private void inputSoundtrackname() {
+        TextSender.printText("Введите название музыки");
+        String userAnswer = scanner.nextLine();
+        if ("".equals(userAnswer)) {
+            newHumanToInput.setSoundtrackName(null);
+        } else {
+            newHumanToInput.setSoundtrackName(userAnswer);
+        }
+
+    }
+    private void inputMinutesOFwaiting() throws NumberFormatException {
+
+        if ("".equals(this.MinutesOfWaiting)) {
+            newHumanToInput.setMinutesOfWaiting(null);
+        } else {
+            newHumanToInput.setMinutesOfWaiting((Float) StringToTypeConverter.toObject(Float.class, this.MinutesOfWaiting));
+            boolean validationResult = HumanValidator.validateField(newHumanToInput, "MinutesOfWaiting");
+            if (!validationResult) {
+                throw new IllegalArgumentException("Ошибка ввода скорости удара человека");
+            }
         }
     }
 
@@ -176,6 +214,7 @@ public class HumanInfoInput {
         inputRealHero();
         inputHasToothpick();
         inputImpactSpeed();
+        inputMinutesOFwaiting();
     }
 
     /**
@@ -185,6 +224,7 @@ public class HumanInfoInput {
         inputImpactSpeed();
         inputX();
         inputY();
+        inputSoundtrackname();
         inputWeaponType();
         inputCar();
     }

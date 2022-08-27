@@ -5,6 +5,8 @@ package kito.lab5.client.entities.enums;
  */
 public enum WeaponType {
     HAMMER,
-    SHOTGUN,
+    PISTOL,
+    RIFLE,
     KNIFE,
+    MACHINE_GUN;
 }

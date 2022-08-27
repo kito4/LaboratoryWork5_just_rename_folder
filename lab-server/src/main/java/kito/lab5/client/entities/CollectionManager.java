@@ -188,7 +188,7 @@ public class CollectionManager {
                     + (human.getMinutesOfWaiting() == null ? "null," : human.getMinutesOfWaiting() + ",")
                     + (human.getWeaponType() == null ? "null," : human.getWeaponType() + ",")
                     + (human.getCar().getCool() +",")
-                      + (human.getCar().getCarname() == null ? "," : (human.getCar().getCarname()   + ",")
+                    + (human.getCar().getCarname() == null ? "null" : (human.getCar().getCarname()   + ",")
                     + (human.getRealHero() == null ? "null," : human.getRealHero()));
             arrayOfInfo.add(humanInfo);
         }
