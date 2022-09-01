@@ -26,6 +26,8 @@ public class HumanFactory {
      */
     private FieldsGetterInterface reader;
 
+    private Scanner sc = new Scanner(System.in);
+
     public HumanFactory(FieldsGetterInterface scanner, FieldsGetterInterface reader) {
         this.scanner = scanner;
         this.reader = reader;
@@ -36,8 +38,8 @@ public class HumanFactory {
             HumanBeing human = new HumanBeing(true);
             System.out.println("Введите координаты x (Float) y (int) ");
             Coordinates t1=new Coordinates();
-            t1.setX(Float.parseFloat(new Scanner(System.in).nextLine()));
-            t1.setY(new Scanner(System.in).nextInt());
+            t1.setX(Float.parseFloat(sc.nextLine()));
+            t1.setY(sc.nextInt());
             human.setCoordinates(t1);
             human.setCreationDate(ZonedDateTime.parse(ZonedDateTime.now().toString()));
             return human;
@@ -47,8 +49,8 @@ public class HumanFactory {
             human.setId();
             human.setCoordinates(reader.getCoordinates());
             Coordinates t1=new Coordinates();
-            t1.setX(Float.parseFloat(new Scanner(System.in).nextLine()));
-            t1.setY(new Scanner(System.in).nextInt());
+            t1.setX(Float.parseFloat(sc.nextLine()));
+            t1.setY(sc.nextInt());
             human.setCoordinates(t1);
             human.setCreationDate(ZonedDateTime.parse(ZonedDateTime.now().toString()));
 

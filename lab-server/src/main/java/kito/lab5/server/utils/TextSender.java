@@ -1,11 +1,10 @@
 package kito.lab5.server.utils;
 
+import kito.lab5.common.util.Request;
+import kito.lab5.common.util.Response;
 import kito.lab5.server.abstractions.AbstractMessage;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 
 public class TextSender {
 
@@ -13,32 +12,38 @@ public class TextSender {
     public static final String ERROR_COLOR = "\u001B[31m"; //ANSI_RED
     public static final String ANSI_RESET = "\u001B[0m";
     public static PrintStream printStream = System.out;
-    public static DataOutputStream dos;
-    public static void printText(String message) {
+    public static ObjectOutputStream oos;
+    public static void printText(String text) {
         try {
-            dos.writeUTF(MESSAGE_COLOR + message + ANSI_RESET);
+            Response response = new Response();
+            response.setMessage(text);
+            oos.writeObject(response);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void printError(String message) {
+    public static void printError(String text) {
         try {
-            dos.writeUTF(ERROR_COLOR + message + ANSI_RESET);
+            Response response = new Response();
+            response.setMessage(text);
+            oos.writeObject(response);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void printMessage(AbstractMessage message) {
+    public static void printMessage(String text) {
         try {
-            dos.writeUTF(message.getMessage());
+            Response response = new Response();
+            response.setMessage(text);
+            oos.writeObject(response);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void changePrintStream(DataOutputStream newPrintStream) {
-        dos = newPrintStream;
+    public static void changePrintStream(ObjectOutputStream newPrintStream) {
+        oos = newPrintStream;
     }
 }

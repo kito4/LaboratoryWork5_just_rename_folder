@@ -20,7 +20,7 @@ public class ExecuteScript extends AbstractCommand {
         if (args.length == getAMOUNT_OF_ARGS()) {
             String fileName = args[0];
             try {
-                commandListener = new CommandListener((DataInputStream) initializeFile(fileName));
+                commandListener = new CommandListener((ObjectInputStream) initializeFile(fileName));
             } catch (IOException e) {
                 return e.getMessage();
             }

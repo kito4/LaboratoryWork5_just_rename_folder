@@ -6,13 +6,14 @@ import kito.lab5.server.utils.TextSender;
 
 import java.io.DataInputStream;
 import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
 
 public class Application {
 
     CSVReader collectionFileReader;
     CommandListener commandListener;
 
-    public Application(DataInputStream dis) {
+    public Application(ObjectInputStream dis) {
         collectionFileReader = new CSVReader();
         commandListener = new CommandListener(dis);
     }
