@@ -8,7 +8,9 @@ import kito.lab5.common.util.Request;
 import kito.lab5.common.util.Response;
 import kito.lab5.common.util.Serializer;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -74,8 +76,8 @@ public final class Client {
                     request.setCommandNameAndArguments(userInputHandler.getCommand());
                     try {
                         ByteBuffer buffer = Serializer.serializeRequest(request);
-                        buffer.clear();
                         clientChannel.write(buffer);
+                        buffer.clear();
                         clientChannel.register(selector, SelectionKey.OP_READ);
                     } catch (IOException e) {
                         e.printStackTrace();
