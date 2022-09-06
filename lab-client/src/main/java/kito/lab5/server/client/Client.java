@@ -8,9 +8,8 @@ import kito.lab5.common.util.Request;
 import kito.lab5.common.util.Response;
 import kito.lab5.common.util.Serializer;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -18,6 +17,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
@@ -29,7 +29,7 @@ public final class Client {
 
 
 
-
+// по услови задания на сервере потоки ввода-вывода
     public static void main(String[] args) throws IOException, ClassNotFoundException, EndOfFileException {
         Scanner scanner = new Scanner(System.in);
         HumanFactory humanFactory = new HumanFactory(new ScannerFieldsGetter(scanner), new ReaderFieldsGetter(null));
@@ -42,7 +42,7 @@ public final class Client {
         clientChannel.register(selector, SelectionKey.OP_WRITE);
 
         UserInputHandler userInputHandler = new UserInputHandler();
-
+        exit:
         while (true) {
             selector.select();
             Set<SelectionKey> keys = selector.selectedKeys();
@@ -52,8 +52,16 @@ public final class Client {
                 iterator.remove();
                 if (key.isReadable()) {
                     SocketChannel serverChannel = (SocketChannel) key.channel();
+                    serverChannel.configureBlocking(false);
+//                    // TODO new code below
+//                    Response response = new Response();
+//                    ObjectOutputStream oos = new ObjectOutputStream(serverChannel.socket().getOutputStream());
+//                    oos.writeObject(response);
+//                    System.out.println(response.getMessage());
+//                    // TODO new code above
                     ByteBuffer buffer = ByteBuffer.allocate(4096);
                     serverChannel.read(buffer);
+                    System.out.println(Arrays.toString(buffer.array()).toCharArray());            // TODO UNDO IMPORT
                     Response response = Serializer.deSerializeResponse(buffer.array());
                     ResponseHandler.handleResponse(response);
                     if (response.isObjectNeeded()) {
@@ -74,6 +82,9 @@ public final class Client {
 
                     Request request = new Request();
                     request.setCommandNameAndArguments(userInputHandler.getCommand());
+                    if (request.getCommandNameAndArguments().equals("exit")){
+                        break exit;
+                    }
                     try {
                         ByteBuffer buffer = Serializer.serializeRequest(request);
                         clientChannel.write(buffer);

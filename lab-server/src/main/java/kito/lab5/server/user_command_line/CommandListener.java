@@ -39,18 +39,18 @@ public class CommandListener {
             try {
                 ByteArrayOutputStream buffer = new ByteArrayOutputStream(); // TODO
                 int toRead;
-                byte[] bytes = new byte[65536];
-                while ((toRead = commandsInputStream.read(bytes,0,bytes.length)) != 1) {
+                byte[] bytes = new byte[4096];
+                while ((toRead =commandsInputStream.read(bytes,0,bytes.length)) != 1) {
                     buffer.write(bytes,0,toRead);
                 }
                 byte[] objectBytes = buffer.toByteArray();
                 Request request = Serializer.deSerializeRequest(objectBytes);
 
                 String line =  request.getCommandNameAndArguments();
-                //if ("exit".equals(line)) {
-                //    isRunning = false;
-                //    continue;
-                //}
+//                if ("exit".equals(line)) {
+//                    isRunning = false;
+//                    continue;
+//                }
                 String[] inputString = SmartSplitter.smartSplit(line).toArray(new String[0]);
                 String commandName = inputString[0].toLowerCase();
                 String[] commandArgs = Arrays.copyOfRange(inputString, 1, inputString.length);

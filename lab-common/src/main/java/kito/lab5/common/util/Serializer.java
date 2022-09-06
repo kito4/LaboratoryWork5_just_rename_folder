@@ -36,16 +36,16 @@ public class Serializer {
         byteArrayOutputStream.close();
         return bufToSend;
     }
-
-    public static Response deSerializeResponse(byte[] acceptedBuf) throws IOException, ClassNotFoundException {
-    //    System.out.println(Arrays.toString(acceptedBuf)); TODO
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(acceptedBuf);
+    public static Response deSerializeResponse(byte[] bytes) throws IOException, ClassNotFoundException {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-        Response response = (Response) objectInputStream.readObject();
+        objectInputStream.read()
+        Response request = (Response) objectInputStream.read();
         byteArrayInputStream.close();
         objectInputStream.close();
-        return response;
+        return request;
     }
+
 
 
 }
